@@ -18,8 +18,8 @@ Gem::Specification.new do |s|
 
 
   ## Modified
-  s.add_dependency "activesupport",       ">= 3"
-  s.add_dependency "activemodel",         ">= 3"
+  s.add_dependency "activesupport",       "4.1.6"
+  s.add_dependency "activemodel",         "4.1.6"
   s.add_dependency "bunny",               ">= 0.10.7"
   s.add_dependency "amq-protocol",        ">= 1.9.2"
   s.add_dependency "ruby-progressbar",    "~> 1.6.0"
