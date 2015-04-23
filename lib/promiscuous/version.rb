@@ -1,3 +1,3 @@
 module Promiscuous
-  VERSION = '2.0.0.beta1'
+  VERSION = '2.0.0.beta1fandor'
 end
