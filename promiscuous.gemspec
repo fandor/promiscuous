@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
   s.add_dependency "bunny",               "~> 1.7.0"
   s.add_dependency "amq-protocol",        ">= 1.9.2"
   s.add_dependency "ruby-progressbar",    "~> 1.7.5"
-  s.add_dependency "redis",               "~> 3.1.0"
+  s.add_dependency "redis",               "~> 3.2.0"
   s.add_dependency "algorithms",          "~> 0.6.1"
   s.add_dependency "fnv",                 "0.2.0"
   s.add_dependency "multi_json",          "~> 1.10.1"
