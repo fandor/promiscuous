@@ -55,14 +55,16 @@ class Promiscuous::Subscriber::UnitOfWork
     key = "#{app}:#{operation.key}"
     lock = Redis::Lock.new(key, LOCK_OPTIONS.merge(:redis => Promiscuous::Redis.connection))
 
-    unless lock.lock
+    begin
+      lock.lock
+    rescue Redis::Lock::Timeout
       raise Promiscuous::Error::LockUnavailable.new(lock.key)
     end
 
     begin
       yield
     ensure
-      unless lock.unlock
+      unless lock.try_unlock
         # TODO Be safe in case we have a duplicate message and lost the lock on it
         raise "The subscriber lost the lock during its operation. It means that someone else\n"+
           "received a duplicate message, and we got screwed.\n"
@@ -72,14 +74,30 @@ class Promiscuous::Subscriber::UnitOfWork
 
   # XXX Used for hooking into e.g. by promiscuous-newrelic
   def execute_operation(operation)
+    Promiscuous.debug "************************************"
+    Promiscuous.debug "Execute_operation"
+    Promiscuous.debug "************************************"
     with_instance_locked_for(operation) do
       operation.execute
     end
   end
 
   def on_message
+    Promiscuous.debug "************************************"
+    Promiscuous.debug "On Message"
+    Promiscuous.debug "************************************"
     with_transaction do
-      self.operations.each { |op| execute_operation(op) if op.model }
+      Promiscuous.debug "************************************"
+      Promiscuous.debug "with_transaction do"
+      Promiscuous.debug "************************************"
+      #self.operations.each { |op| execute_operation(op) if op.model }
+      self.operations.each do |op|
+        Promiscuous.debug "************************************"
+        #Promiscuous.debug "op: #{op.inspect}"
+        Promiscuous.debug "op.model: #{op.model}"
+        Promiscuous.debug "************************************"
+        execute_operation(op) if op.model
+      end
     end
     message.ack
   end
