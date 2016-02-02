@@ -80,7 +80,7 @@ class Promiscuous::Publisher::Operation::Base
     end
   rescue Redis::Lock::Timeout, Redis::Lock::LostLock => e
     unlock_all_locks
-    raise Promiscuous::Error::LockUnavailable.new(e.lock.key)
+    #raise Promiscuous::Error::LockUnavailable.new(e.lock.key)
   end
 
   def unlock_all_locks

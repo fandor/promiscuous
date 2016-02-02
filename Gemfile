@@ -6,7 +6,8 @@ gem 'rspec', '~> 2.99.0'
 gem 'rspec-retry', :require => false
 gem 'mocha', :require => false
 
-gem 'activerecord', '~> 4.2'
+gem 'activerecord', '~> 4.2.5'
+gem 'activesupport', '~> 4.2.5'
 gem 'database_cleaner'
 gem 'simplecov',   :require => false
 gem 'coveralls',   :require => false
