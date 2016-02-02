@@ -58,7 +58,7 @@ class Promiscuous::Subscriber::UnitOfWork
     begin
       lock.lock
     rescue Redis::Lock::Timeout
-      raise Promiscuous::Error::LockUnavailable.new(lock.key)
+      #raise Promiscuous::Error::LockUnavailable.new(lock.key)
     end
 
     begin
