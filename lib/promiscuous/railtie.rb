@@ -1,11 +1,11 @@
 module Promiscuous::ControllerMiddleware
   extend ActiveSupport::Concern
 
-  def process_action(*args)
-    Promiscuous::Publisher::Context::Base.current.current_user = self.current_user if self.respond_to?(:current_user)
-    super
-    Promiscuous::Publisher::Context::Base.current.current_user = nil
-  end
+  # def process_action(*args)
+  #   Promiscuous::Publisher::Context::Base.current.current_user = self.current_user if self.respond_to?(:current_user)
+  #   super
+  #   Promiscuous::Publisher::Context::Base.current.current_user = nil
+  # end
 end
 
 class Promiscuous::Railtie < Rails::Railtie

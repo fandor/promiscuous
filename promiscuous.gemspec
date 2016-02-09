@@ -16,17 +16,31 @@ Gem::Specification.new do |s|
 
   s.executables   = ['promiscuous']
 
+
   #100beta6
-  s.add_dependency "activesupport",       ">= 3"
-  s.add_dependency "activemodel",         ">= 3"
-  s.add_dependency "bunny",               ">= 0.10.7"
-  s.add_dependency "amq-protocol",        ">= 1.8.0"
-  s.add_dependency "ruby-progressbar",    "~> 1.2.0"
-  s.add_dependency "redis",               "~> 3.0"
+  s.add_dependency "activesupport",       "~> 4.2.5"
+  s.add_dependency "activemodel",         "~> 4.2.5"
+  s.add_dependency "bunny",               "~> 2.0"
+  s.add_dependency "amq-protocol",        "~> 2.0.1"
+  s.add_dependency "ruby-progressbar",    "~> 1.7.5"
+  s.add_dependency "redis",               "~> 3.2.0"
   s.add_dependency "algorithms",          "~> 0.6.1"
   s.add_dependency "fnv",                 "0.2.0"
-  s.add_dependency "multi_json",          "~> 1.8.0"
-  s.add_dependency "robust-redis-lock",   "~> 0.2.2"
+  s.add_dependency "multi_json",          "~> 1.11"
+  s.add_dependency "robust-redis-lock",   "~> 1.3"
+
+
+  # #100beta6 orig
+  # s.add_dependency "activesupport",       ">= 3"
+  # s.add_dependency "activemodel",         ">= 3"
+  # s.add_dependency "bunny",               ">= 0.10.7"
+  # s.add_dependency "amq-protocol",        ">= 1.8.0"
+  # s.add_dependency "ruby-progressbar",    "~> 1.2.0"
+  # s.add_dependency "redis",               "~> 3.0"
+  # s.add_dependency "algorithms",          "~> 0.6.1"
+  # s.add_dependency "fnv",                 "0.2.0"
+  # s.add_dependency "multi_json",          "~> 1.8.0"
+  # s.add_dependency "robust-redis-lock",   "~> 0.2.2"
 
   #master_fandor
   # s.add_dependency "activesupport",       "~> 4.2.5"
