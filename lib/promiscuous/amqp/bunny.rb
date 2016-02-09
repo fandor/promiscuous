@@ -101,7 +101,7 @@ class Promiscuous::AMQP::Bunny
     end
   rescue Exception => e
     Promiscuous.warn("[publish] Failure publishing to rabbit #{e}\n#{e.backtrace.join("\n")}")
-    e = Promiscuous::Error::Publisher.new(e, :payload => options[:payload])
+    #e = Promiscuous::Error::Publisher.new(e, :payload => options[:payload])
 
     if options[:async]
       Promiscuous::Config.error_notifier.call(e)
