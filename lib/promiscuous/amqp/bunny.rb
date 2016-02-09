@@ -106,7 +106,8 @@ class Promiscuous::AMQP::Bunny
     if options[:async]
       Promiscuous::Config.error_notifier.call(e)
     else
-      raise e
+      #raise e
+      Promiscuous.warn("[publish] Failure publishing to rabbit #{e}\n#{e.backtrace.join("\n")}")
     end
   end
 
