@@ -93,7 +93,9 @@ class Promiscuous::AMQP::Bunny
         if @channel.wait_for_confirms
           options[:on_confirm].call if options[:on_confirm]
         else
-          raise Promiscuous::Error::PublishUnacknowledged.new(options[:payload])
+          #raise Promiscuous::Error::PublishUnacknowledged.new(options[:payload])
+          err = Promiscuous::Error::PublishUnacknowledged.new(options[:payload])
+          Promiscuous.warn("[publish] Failure publishing to rabbit #{e}\n#{err.backtrace.join("\n")}")
         end
       end
     end
