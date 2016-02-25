@@ -74,28 +74,28 @@ class Promiscuous::Subscriber::UnitOfWork
 
   # XXX Used for hooking into e.g. by promiscuous-newrelic
   def execute_operation(operation)
-    Promiscuous.debug "************************************"
-    Promiscuous.debug "Execute_operation"
-    Promiscuous.debug "************************************"
+    # Promiscuous.debug "************************************"
+    # Promiscuous.debug "Execute_operation"
+    # Promiscuous.debug "************************************"
     with_instance_locked_for(operation) do
       operation.execute
     end
   end
 
   def on_message
-    Promiscuous.debug "************************************"
-    Promiscuous.debug "On Message"
-    Promiscuous.debug "************************************"
+    # Promiscuous.debug "************************************"
+    # Promiscuous.debug "On Message"
+    # Promiscuous.debug "************************************"
     with_transaction do
-      Promiscuous.debug "************************************"
-      Promiscuous.debug "with_transaction do"
-      Promiscuous.debug "************************************"
+      # Promiscuous.debug "************************************"
+      # Promiscuous.debug "with_transaction do"
+      # Promiscuous.debug "************************************"
       #self.operations.each { |op| execute_operation(op) if op.model }
       self.operations.each do |op|
-        Promiscuous.debug "************************************"
-        #Promiscuous.debug "op: #{op.inspect}"
-        Promiscuous.debug "op.model: #{op.model}"
-        Promiscuous.debug "************************************"
+        # Promiscuous.debug "************************************"
+        # #Promiscuous.debug "op: #{op.inspect}"
+        # Promiscuous.debug "op.model: #{op.model}"
+        # Promiscuous.debug "************************************"
         execute_operation(op) if op.model
       end
     end
