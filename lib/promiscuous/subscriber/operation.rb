@@ -10,10 +10,10 @@ class Promiscuous::Subscriber::Operation
       self.version    = payload['version']
       self.model      = self.get_subscribed_model(payload) if payload['types']
 
-      Promiscuous.debug "************************************"
-      Promiscuous.debug "payload: #{payload}"
-      #Promiscuous.debug "Promiscuous::Subscriber::Operation: #{self.inspect}"
-      Promiscuous.debug "************************************"
+      # Promiscuous.debug "************************************"
+      # Promiscuous.debug "payload: #{payload}"
+      # #Promiscuous.debug "Promiscuous::Subscriber::Operation: #{self.inspect}"
+      # Promiscuous.debug "************************************"
     end
   end
 
@@ -24,17 +24,17 @@ class Promiscuous::Subscriber::Operation
   def get_subscribed_model(payload)
     [message.app, '*'].each do |app|
 
-      Promiscuous.debug "************************************"
-      Promiscuous.debug "app: #{app.inspect}"
+      # Promiscuous.debug "************************************"
+      # Promiscuous.debug "app: #{app.inspect}"
 
       app_mapping = Promiscuous::Subscriber::Model.mapping[app] || {}
       payload['types'].to_a.each do |ancestor|
         model = app_mapping[ancestor]
         #model = ancestor
 
-        Promiscuous.debug "payload['types'] ancestor: #{ancestor}"
-        Promiscuous.debug "model: #{model.inspect}"
-        Promiscuous.debug "************************************"
+        # Promiscuous.debug "payload['types'] ancestor: #{ancestor}"
+        # Promiscuous.debug "model: #{model.inspect}"
+        # Promiscuous.debug "************************************"
 
         return model if model
       end
@@ -62,16 +62,16 @@ class Promiscuous::Subscriber::Operation
   end
 
   def update(should_create_on_failure=true)
-    Promiscuous.debug "***************----------------->  update"
+    #Promiscuous.debug "***************----------------->  update"
     model.__promiscuous_fetch_existing(id).tap do |instance|
       if instance.__promiscuous_eventual_consistency_update(self)
-        Promiscuous.debug "***************----------------->  begin update"
+        #Promiscuous.debug "***************----------------->  begin update"
 
         instance.__promiscuous_update(self)
-        Promiscuous.debug "***************----------------->  update complete"
+        #Promiscuous.debug "***************----------------->  update complete"
 
         instance.save!
-        Promiscuous.debug "***************----------------->  save complete"
+        #Promiscuous.debug "***************----------------->  save complete"
       end
     end
   rescue model.__promiscuous_missing_record_exception
@@ -87,24 +87,24 @@ class Promiscuous::Subscriber::Operation
   end
 
   def execute
-    Promiscuous.debug "************************************"
-    Promiscuous.debug "CASE EXECUTE"
-    Promiscuous.debug "************************************"
+    # Promiscuous.debug "************************************"
+    # Promiscuous.debug "CASE EXECUTE"
+    # Promiscuous.debug "************************************"
     case operation
     when :create
-      Promiscuous.debug "************************************"
-      Promiscuous.debug "CREATE"
-      Promiscuous.debug "************************************"
+      # Promiscuous.debug "************************************"
+      # Promiscuous.debug "CREATE"
+      # Promiscuous.debug "************************************"
       create
     when :update
-      Promiscuous.debug "************************************"
-      Promiscuous.debug "UPDATE"
-      Promiscuous.debug "************************************"
+      # Promiscuous.debug "************************************"
+      # Promiscuous.debug "UPDATE"
+      # Promiscuous.debug "************************************"
       update
     when :destroy
-      Promiscuous.debug "************************************"
-      Promiscuous.debug "DESTROY"
-      Promiscuous.debug "************************************"
+      # Promiscuous.debug "************************************"
+      # Promiscuous.debug "DESTROY"
+      # Promiscuous.debug "************************************"
       destroy
     end
   end
